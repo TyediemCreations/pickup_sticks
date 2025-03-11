@@ -10,10 +10,12 @@ class Player(object):
 
     @classmethod
     def register_player(cls, game, player_no):
+        """Request player name and initialize player."""
         player_name = input("Welcome Player#%i. What is your name? " % player_no)
         return cls(game, player_no, player_name)
 
     def turn(self):
+        """Player turn."""
         print ("%s's turn. Current game state: %s" % (self, self.game))
         while True:
             to_pickup = int(input("How many sticks will you pick up? "))

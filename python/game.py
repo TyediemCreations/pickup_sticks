@@ -13,6 +13,7 @@ class Game(object):
         self.stick_range = stick_range
 
     def play_game(self):
+        """Alternate player turns until game is over."""
         print(
             "Welcome to the wonderful world of pickup sticks! There are %i "\
             "sticks on the ground, you must pick up %i-%i sticks per turn. "\
@@ -29,9 +30,11 @@ class Game(object):
         print ("Game over! Player %s wins!" % player)
 
     def game_over(self):
+        """Returns True iff game is over."""
         return self.num_sticks <= 0
 
     def pickup(self, to_pickup):
+        """Pickup to_pickup sticks and return True if valid, else False"""
         if self.stick_range[0] <= to_pickup <= self.stick_range[1]:
             self.num_sticks = max(0, self.num_sticks - to_pickup)
             return True
