@@ -16,7 +16,7 @@ class Game(object):
         print(
             "Welcome to the wonderful world of pickup sticks! There are %i "\
             "sticks on the ground, you must pick up %i-%i sticks per turn. "\
-            "Whoever picks up the last stick loses!" %
+            "Whoever picks up the last stick wins!" %
             (self.num_sticks, self.stick_range[0], self.stick_range[1])
         )
 
@@ -26,7 +26,7 @@ class Game(object):
                 if self.game_over():
                     break
 
-        print ("Game over! Player %s loses!" % player)
+        print ("Game over! Player %s wins!" % player)
 
     def game_over(self):
         return self.num_sticks <= 0
