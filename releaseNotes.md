@@ -3,7 +3,7 @@
 ## v0.*
 -------
 
-### v0.1.0 released on 2025-03-XX
+### v0.1.0 released on 2025-03-12
 
 #### Initial Release
 
