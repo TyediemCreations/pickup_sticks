@@ -18,7 +18,15 @@ class Player(object):
         """Player turn."""
         print ("%s's turn. Current game state: %s" % (self, self.game))
         while True:
-            to_pickup = int(input("How many sticks will you pick up? "))
+            player_input = input("How many sticks will you pick up? ")
+            try:
+                to_pickup = int(player_input)
+            except ValueError:
+                print(
+                    "ERROR: you can't pick up %r sticks! Try a whole number." %
+                    player_input
+                )
+                continue
             if not self.game.pickup(to_pickup):
                 print(
                     "ERROR: %i is an invalid number of sticks. The current game state is: %s" % 
