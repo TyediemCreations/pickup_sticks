@@ -19,6 +19,7 @@ class Test_Game(object):
 
     @mock.patch("pickup_sticks.game.Game.game_over")
     def test_play_game(self, mock_game_over):
+        """Test for play_game, ending after one turn."""
         mock_game_over.side_effect = [False, True, True]
         self.game.play_game()
         self.mock_player.turn.assert_called_once()
@@ -32,6 +33,7 @@ class Test_Game(object):
         ]
     )
     def test_game_over(self, num_sticks, expected_return_value):
+        """Test for game_over."""
         self.game.num_sticks = num_sticks
         assert self.game.game_over() == expected_return_value
 
@@ -45,9 +47,11 @@ class Test_Game(object):
         ]
     )
     def test_pickup(self, to_pickup, expected_num_sticks, expected_return_value):
+        """Test for pickup."""
         return_value = self.game.pickup(to_pickup)
         assert return_value == expected_return_value
         assert self.game.num_sticks == expected_num_sticks
 
     def test_str(self):
+        """Test for __str__."""
         assert str(self.game) == "Total sticks: 50; Min sticks/turn: 1; Max sticks/turn: 10"

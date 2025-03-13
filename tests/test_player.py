@@ -22,6 +22,7 @@ class Test_Player(object):
         assert player.player_name == "foobar"
 
     def test_turn_valid(self):
+        """Test for turn, with valid input."""
         self.mock_game.pickup.return_value = True
         with mock.patch("builtins.input", return_value="10"):
             self.player.turn()
@@ -29,6 +30,7 @@ class Test_Player(object):
 
     @mock.patch("builtins.print")
     def test_turn_ValueError(self, mock_print):
+        """Test for turn, with non-int input."""
         self.mock_game.pickup.return_value = True
         with mock.patch("builtins.input", side_effect=["non-int", "10"]):
             self.player.turn()
@@ -39,6 +41,7 @@ class Test_Player(object):
 
     @mock.patch("builtins.print")
     def test_turn_invalid_number(self, mock_print):
+        """Test for turn, with invalid int input."""
         self.mock_game.pickup.side_effect = [False, True]
         with mock.patch("builtins.input", return_value="1"):
             self.player.turn()
@@ -46,4 +49,3 @@ class Test_Player(object):
             mock.call("Player#1:test_player's turn. Current game state: %s" % self.mock_game),
             mock.call("ERROR: 1 is an invalid number of sticks. The current game state is: %s" % self.mock_game),
         ])
-        
