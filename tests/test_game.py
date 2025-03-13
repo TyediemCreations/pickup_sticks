@@ -1,6 +1,4 @@
 """Test module for Game."""
-import unittest
-
 import mock
 import pytest
 
@@ -8,14 +6,14 @@ from pickup_sticks.game import Game
 
 
 class Test_Game(object):
-    """Test module for Game."""
+    """Test class for Game."""
     @pytest.fixture(autouse=True)
     def set_up(self):
-        self.num_players = 2
-        self.num_sticks = 50
-        self.stick_range = (1,10)
+        num_players = 2
+        num_sticks = 50
+        stick_range = (1,10)
         with mock.patch("player.Player.register_player"):
-            self.game = Game(self.num_players, self.num_sticks, self.stick_range)
+            self.game = Game(num_players, num_sticks, stick_range)
 
     @pytest.mark.parametrize(
         "num_sticks,expected_return_value",
