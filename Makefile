@@ -13,4 +13,4 @@ run:
 	python -m pickup_sticks
 
 test:
-	python -tt -m pytest --cov=pickup_sticks tests
+	python -tt -m pytest --cov=pickup_sticks --cov-report term-missing tests
