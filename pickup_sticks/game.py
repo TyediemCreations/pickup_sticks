@@ -6,7 +6,7 @@ class Game(object):
     """Sets up and keeps track of the game-state."""
     def __init__(self, num_players=2, num_sticks=50, stick_range=(1,10)):
         self.players = []
-        print ("Beginning a game with %i players." % num_players)
+        print("Beginning a game with %i players." % num_players)
         for i in range(num_players):
             self.players.append(Player.register_player(self, i+1))
         self.num_sticks = num_sticks
@@ -27,7 +27,7 @@ class Game(object):
                 if self.game_over():
                     break
 
-        print ("Game over! Player %s wins!" % player)
+        print("Game over! Player %s wins!" % player)
 
     def game_over(self):
         """Returns True iff game is over."""
