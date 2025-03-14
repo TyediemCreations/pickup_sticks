@@ -14,7 +14,7 @@
 * Added support for automated players.
 * Added support for toggling game parameters from the command line.
 
-#### PR(s): https://github.com/TyediemCreations/pickup_sticks/pull/2
+#### PR(s): https://github.com/TyediemCreations/pickup_sticks/pull/3
 
 
 ### v0.2.0 released on 2025-03-12
