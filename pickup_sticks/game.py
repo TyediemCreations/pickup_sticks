@@ -12,8 +12,8 @@ class Game(object):
             stick_range=(1,10)
         ):
         self.players = []
-        human_greeting = "%i player%s" % (num_players, "s" if num_players > 1 else "")
-        robot_greeting = "%i robot%s" % (num_ai, "s" if num_ai > 1 else "")
+        human_greeting = "%i player%s" % (num_players, "s" if num_players != 1 else "")
+        robot_greeting = "%i robot%s" % (num_ai, "s" if num_ai != 1 else "")
         print("Beginning a game with %s and %s" % (human_greeting, robot_greeting))
         for i in range(num_players):
             self.players.append(Player.register_player(self, i+1))
