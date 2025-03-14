@@ -13,9 +13,10 @@ class Test_Game(object):
         self.mock_player = mock.Mock()
         mock_register_player.return_value = self.mock_player
         num_players = 2
+        num_ai = 0
         num_sticks = 50
         stick_range = (1,10)
-        self.game = Game(num_players, num_sticks, stick_range)
+        self.game = Game(num_players, num_ai, num_sticks, stick_range)
 
     @mock.patch("pickup_sticks.game.Game.game_over")
     def test_play_game(self, mock_game_over):

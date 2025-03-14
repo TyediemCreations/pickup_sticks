@@ -1,6 +1,6 @@
 """Player module for receiving player input."""
 import math
-from random import randint as rand
+from random import randint
 
 
 class Player(object):
@@ -64,7 +64,7 @@ class AIPlayerEasy(Player):
         if num_sticks <= stick_range[1]:
             return str(max(num_sticks, stick_range[0]))
         else:
-            return str(rand(stick_range[0], stick_range[1]))
+            return str(randint(stick_range[0], stick_range[1]))
 
 
 class AIPlayerHard(Player):
