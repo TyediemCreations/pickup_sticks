@@ -73,6 +73,7 @@ class Test_AIPlayerEasy(Test_PlayerBase):
     )
     @mock.patch("pickup_sticks.player.randint", return_value=5)
     def test_get_player_input(self, mock_rand, game_state, expected):
+        """Test for get_player_input."""
         self.mock_game.get_game_state.return_value = game_state
         assert self.player.get_player_input("") == expected
 
@@ -94,5 +95,6 @@ class Test_AIPlayerHard(Test_PlayerBase):
     )
     @mock.patch("pickup_sticks.player.randint", return_value=5)
     def test_get_player_input(self, mock_rand, game_state, expected):
+        """Test for get_player_input."""
         self.mock_game.get_game_state.return_value = game_state
         assert self.player.get_player_input("") == expected
