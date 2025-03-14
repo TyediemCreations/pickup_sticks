@@ -3,7 +3,11 @@
 ## v0.*
 -------
 
-### v0.3.0 released on 2025-03-XX
+### v1.0.0 released on 2025-03-13
+
+#### Dropped Feature
+
+* Package is no longer called via `make run`, instead called directly.
 
 #### New Feature
 
