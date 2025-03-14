@@ -51,6 +51,7 @@ class Game(object):
         return False
 
     def get_game_state(self):
+        """Returns a dictionary of the current game state."""
         return {
             "num_sticks": self.num_sticks,
             "stick_range": self.stick_range,

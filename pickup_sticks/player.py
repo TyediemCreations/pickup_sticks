@@ -55,11 +55,14 @@ class AIPlayerEasy(Player):
         super(AIPlayerEasy, self).__init__(game, player_no, "ROBOT")
 
     def get_player_input(self, prompt):
+        """Pick a random number, unless able to win this turn.
+        (Returns a str, as this is replacing the functionality of `input`)
+        """
         game_state = self.game.get_game_state()
         num_sticks = game_state["num_sticks"]
         stick_range = game_state["stick_range"]
         if num_sticks <= stick_range[1]:
-            return str(num_sticks)
+            return str(max(num_sticks, stick_range[0]))
         else:
             return str(rand(stick_range[0], stick_range[1]))
 
@@ -72,12 +75,16 @@ class AIPlayerHard(Player):
         super(AIPlayerHard, self).__init__(game, player_no, "ROBOT")
 
     def get_player_input(self, prompt):
+        """Always try to choose the optimal option, otherwise choose the lower range.
+        This method is optimal if there are 2 players and the lower range is 1,
+        there may be better strategies otherwise.
+        """
         game_state = self.game.get_game_state()
         num_sticks = game_state["num_sticks"]
         stick_range = game_state["stick_range"]
         total_players = game_state["total_players"]
         if num_sticks <= stick_range[1]:
-            return str(num_sticks)
+            return str(max(num_sticks, stick_range[0]))
         optimal_pick = num_sticks % (stick_range[1] + (total_players - 1))
         if stick_range[0] <= optimal_pick <= stick_range[1]:
             return str(optimal_pick)
