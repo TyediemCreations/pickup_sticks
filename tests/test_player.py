@@ -2,15 +2,21 @@
 import mock
 import pytest
 
-from pickup_sticks.player import Player
+from pickup_sticks.player import AIPlayerEasy, AIPlayerHard, Player
 
 
-class Test_Player(object):
-    """Test class for Player"""
-    @pytest.fixture(autouse=True)
+class Test_PlayerBase(object):
+    """Base test class for Player"""
     @mock.patch("game.Game")
     def set_up(self, mock_game):
         self.mock_game = mock_game
+
+
+class Test_Player(Test_PlayerBase):
+    """Test class for Player"""
+    @pytest.fixture(autouse=True)
+    def set_up(self):
+        super(Test_Player, self).set_up()
         self.player = Player(self.mock_game, 1, "test_player")
 
     def test_register_player(self):
@@ -49,3 +55,46 @@ class Test_Player(object):
             mock.call("Player#1:test_player's turn. Current game state: %s" % self.mock_game),
             mock.call("ERROR: 1 is an invalid number of sticks. The current game state is: %s" % self.mock_game),
         ])
+
+
+class Test_AIPlayerEasy(Test_PlayerBase):
+    """Test class for AIPlayerEasy"""
+    @pytest.fixture(autouse=True)
+    def set_up(self):
+        super(Test_AIPlayerEasy, self).set_up()
+        self.player = AIPlayerEasy(self.mock_game, 1)
+
+    @pytest.mark.parametrize(
+        "game_state,expected",
+        [
+            ({"num_sticks":10, "stick_range":(1,10)}, "10"),
+            ({"num_sticks":11, "stick_range":(1,10)}, "5"),
+        ]
+    )
+    @mock.patch("pickup_sticks.player.randint", return_value=5)
+    def test_get_player_input(self, mock_rand, game_state, expected):
+        """Test for get_player_input."""
+        self.mock_game.get_game_state.return_value = game_state
+        assert self.player.get_player_input("") == expected
+
+
+class Test_AIPlayerHard(Test_PlayerBase):
+    """Test class for AIPlayerHard"""
+    @pytest.fixture(autouse=True)
+    def set_up(self):
+        super(Test_AIPlayerHard, self).set_up()
+        self.player = AIPlayerHard(self.mock_game, 1)
+
+    @pytest.mark.parametrize(
+        "game_state,expected",
+        [
+            ({"num_sticks":10, "stick_range":(1,10), "total_players":2}, "10"),
+            ({"num_sticks":11, "stick_range":(1,10), "total_players":2}, "1"),
+            ({"num_sticks":15, "stick_range":(1,10), "total_players":2}, "4"),
+        ]
+    )
+    @mock.patch("pickup_sticks.player.randint", return_value=5)
+    def test_get_player_input(self, mock_rand, game_state, expected):
+        """Test for get_player_input."""
+        self.mock_game.get_game_state.return_value = game_state
+        assert self.player.get_player_input("") == expected
