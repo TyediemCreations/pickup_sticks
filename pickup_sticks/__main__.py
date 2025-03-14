@@ -1,6 +1,5 @@
 """Main module for pickup_sticks."""
 import argparse
-import sys
 
 from game import Game
 
@@ -15,6 +14,12 @@ def setup_arguments():
         type=int,
         default=2,
         help="Number of human players.",
+    )
+    parser.add_argument(
+        "-ai", "--aiplayers",
+        type=int,
+        default=0,
+        help="Number of ai players.",
     )
     parser.add_argument(
         "-n", "--numsticks",
@@ -38,6 +43,7 @@ def main():
     args = setup_arguments()
     game = Game(
         num_players=args.players,
+        num_ai=args.aiplayers,
         num_sticks=args.numsticks,
         stick_range=args.range,
     )
