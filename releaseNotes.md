@@ -3,7 +3,7 @@
 ## v1.*
 -------
 
-### v1.1.0 released on 2025-03-13
+### v1.1.0 released on 2025-03-17
 
 #### Internal improvement
 
